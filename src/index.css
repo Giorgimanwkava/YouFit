@@ -1,0 +1,10 @@
+*{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --header-fs:clamp(45px, 6vw + 1.5rem, 200px);
+}

@@ -1,0 +1,31 @@
+.landing-page{
+    color: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: url(src/assets/sport-equipment.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.catchphrase{
+    font-size: clamp(45px, 6vw + 1.5rem, min(200px,20vh));
+    align-self: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.website-description{
+    font-size: clamp(20px, 2.25vw + 0.6rem, min(80px,8vh));
+    align-self: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.explore-exercise-btn{
+    width: clamp(250px, 20vw + 10rem, min(500px,50vh));
+    font-size: clamp(20px, 1vw + 1.25rem, min(40px,4vh));
+    padding: 15px;
+    border-radius: 5px;
+    align-self: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    cursor: pointer;
+}
