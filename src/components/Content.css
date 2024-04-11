@@ -22,6 +22,7 @@ h1{
     justify-content: center;
     height: auto;
     flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 
 .search-bar{
@@ -31,7 +32,6 @@ h1{
     width: clamp(250px, 25vw + 10rem, 500px);
     font-size: var(--searchbar-fs);
     margin-right: 5px;
-    margin-bottom: 5px;
 }
 
 .search-btn{
@@ -39,6 +39,13 @@ h1{
     height: calc(var(--searchbar-fs) + 37px);
     font-size: var(--searchbar-fs);
     border-radius: 5px;
-    margin-bottom: 5px;
     background-color: rgb(159, 201, 238);
+}
+
+select{
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin: 5px;
 }
