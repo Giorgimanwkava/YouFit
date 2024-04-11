@@ -42,10 +42,39 @@ h1{
     background-color: rgb(159, 201, 238);
 }
 
+.multi-select{
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
 select{
     padding: 10px;
     border: 2px solid black;
     border-radius: 5px;
     margin-right: 10px;
     margin: 5px;
+    height: 60px;
+    font-size: clamp(20px, 1.25vw + 0.3rem, min(25px,6vh));
+}
+
+.exercises{
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+@media (width < 980px) {
+    .exercises{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (width < 620px) {
+    .exercises{
+        grid-template-columns: 1fr;
+    }
 }

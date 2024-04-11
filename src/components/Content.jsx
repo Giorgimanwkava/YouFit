@@ -1,5 +1,6 @@
 import React from 'react'
 import './Content.css'
+import ExcerciseCard from './ExcerciseCard'
 
 const Content = () => {
   return (
@@ -9,7 +10,7 @@ const Content = () => {
         <input className='search-bar' type="text" placeholder="Search..." />
         <button className='search-btn'>Search</button>
       </div>
-      <div>
+      <div className='multi-select'>
         <select name='bodypart' id='bodypart-select'>
           <option value="">Choose bodypart</option>
           <option value="back">back</option>
@@ -75,6 +76,14 @@ const Content = () => {
           <option value="triceps">triceps</option>
           <option value="upper%20back">upper back</option>
         </select>
+      </div>
+      <div className='exercises'>
+        <ExcerciseCard />
+        <ExcerciseCard />
+        <ExcerciseCard />
+        <ExcerciseCard />
+        <ExcerciseCard />
+        <ExcerciseCard />
       </div>
     </section>
   )
