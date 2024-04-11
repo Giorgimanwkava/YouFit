@@ -79,11 +79,11 @@ const Content = () => {
       </div>
       <div className='exercises'>
         <ExcerciseCard />
+        {/* <ExcerciseCard />
         <ExcerciseCard />
         <ExcerciseCard />
         <ExcerciseCard />
-        <ExcerciseCard />
-        <ExcerciseCard />
+        <ExcerciseCard /> */}
       </div>
     </section>
   )
