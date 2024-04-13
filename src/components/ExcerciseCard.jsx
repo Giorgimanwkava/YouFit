@@ -29,17 +29,23 @@ const ExcerciseCard = (props) => {
     }
 
     useEffect(()=>{
-        const offset = Math.floor(Math.random() * 1324);
-        console.log(offset) 
+        // const offset = Math.floor(Math.random() * 1324); 
+        const offset = 1;  
         fetchData(offset);
-        // console.log(exercise) 
+        console.log(exercise)
     },[])
 
     
 
     return (
         <div className='exercise-card'>
-            {exercise.name}
+            <img className='exercise-gif' src = {exercise.gifUrl} alt='animated exercise gif'/>
+            <h4>{exercise.name}</h4>
+            <div className='exercise-descriptions'>
+                <label></label>
+                <label></label>
+                <label></label>
+            </div>
         </div>
     )
 }
