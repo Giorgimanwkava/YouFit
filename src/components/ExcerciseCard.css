@@ -1,11 +1,47 @@
 .exercise-card{
     border: 2px solid black;
     width: 300px;
-    height: 300px;
+    height: auto;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+}
+
+.exercise-name{
+    margin: 5px;
+    font-size: 22px;
+    text-align: center;
 }
 
 .exercise-gif{
     width: 100%;
-    height: 80%;
+    height: 250px;
+}
+
+.exercise-descriptions{
+    height: auto;
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.exercise-label{
+    margin: 5px;
+    border-radius: 15px;
+    padding: 6px 15px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.bodyPart{
+    background-color: rgb(252, 199, 87);
+}
+
+.equipment{
+    background-color: rgb(113, 214, 228);
+}
+
+.target{
+    background-color: rgb(236, 107, 167);
 }
