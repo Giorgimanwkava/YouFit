@@ -23,11 +23,12 @@ h1{
     height: auto;
     flex-wrap: wrap;
     margin-bottom: 20px;
+    border: 2px solid black;
+    border-radius: 5px;
 }
 
 .search-bar{
-    border: 2px solid black;
-    border-radius: 5px;
+    border: none;
     padding: 15px 30px;
     width: clamp(250px, 25vw + 10rem, 500px);
     font-size: var(--searchbar-fs);
@@ -35,11 +36,15 @@ h1{
 }
 
 .search-btn{
-    width: clamp(150px, 20vw, 200px);
+    width: clamp(50px, 10vw, 100px);
     height: calc(var(--searchbar-fs) + 37px);
     font-size: var(--searchbar-fs);
-    border-radius: 5px;
-    background-color: rgb(159, 201, 238);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    cursor: pointer;
+    /* background-color: rgb(159, 201, 238); */
 }
 
 .multi-select{
@@ -58,6 +63,7 @@ select{
     margin: 5px;
     height: 60px;
     font-size: clamp(20px, 1.25vw + 0.3rem, min(25px,6vh));
+    cursor: pointer;
 }
 
 .exercises{

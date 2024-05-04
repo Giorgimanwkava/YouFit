@@ -8,7 +8,7 @@ const Content = () => {
       <h1>Search for excercises</h1>
       <div className='searchbar-and-btn'>
         <input className='search-bar' type="text" placeholder="Search..." />
-        <button className='search-btn'>Search</button>
+        <button className="fa-solid fa-magnifying-glass search-btn"></button>
       </div>
       <div className='multi-select'>
         <select name='bodypart' id='bodypart-select'>

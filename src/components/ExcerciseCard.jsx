@@ -37,7 +37,7 @@ const ExcerciseCard = (props) => {
     //     // const offset = Math.floor(Math.random() * 1324);  
     //     fetchData(offset);
     //     console.log(exercise)
-    // },[])
+    // },[]) 
 
     
     useEffect(()=>{
