@@ -1,8 +1,80 @@
-import React from 'react'
+import React,{ useEffect, useState } from 'react'
 import './Content.css'
 import ExcerciseCard from './ExcerciseCard'
+import Data from "../assets/data.json"
 
 const Content = () => {
+
+  // this is function for fetching data from rapidAPI.
+    // it is commented out because rapidAPI only allows for 550 calls/month
+    // and I have exhausted my monthly limit
+
+    // const options = {
+	//     method: 'GET',
+    //     headers: {
+    //         'X-RapidAPI-Key': '41439c410emsh69908f56a5b982dp1f7bc8jsn1bba7960eb67',
+    //         'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
+    //     }
+    // }
+
+    // async function fetchData(argOffset){
+    //     try {
+    //         const response = await fetch(`https://exercisedb.p.rapidapi.com/exercises?limit=1&offset=${argOffset}`, options);
+    //         if(!response.ok){
+    //             throw new Error("could not fetch resource")
+    //         }
+    //         const result = await response.json()
+    //         const exerciseDetails=result[0]
+    //         setExercise(exerciseDetails)
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
+
+    // useEffect(()=>{
+    //     // const offset = Math.floor(Math.random() * 1324);  
+    //     fetchData(offset);
+    // },[]) 
+  
+  const [exercises, setExercises] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const exercisesPerPage = 5;
+  const totalPages = Math.ceil(Data.length / exercisesPerPage);
+  const exercisesContainerRef = useRef(null);
+
+  useEffect(() => {
+    const offset = (currentPage - 1) * exercisesPerPage;
+    const paginatedData = Data.slice(offset, offset + exercisesPerPage);
+    setExercises(paginatedData);
+  }, [currentPage]);
+
+  const handlePageClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    exercisesContainerRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const getPaginationNumbers = () => {
+    const pages = [];
+    const startPage = Math.max(2, currentPage - 2);
+    const endPage = Math.min(totalPages - 1, currentPage + 2);
+
+    if (currentPage <= 3) {
+      for (let i = 2; i <= Math.min(5, totalPages - 1); i++) {
+        pages.push(i);
+      }
+    } else if (currentPage >= totalPages - 2) {
+      for (let i = Math.max(totalPages - 4, 2); i <= totalPages - 1; i++) {
+        pages.push(i);
+      }
+    } else {
+      for (let i = startPage; i <= endPage; i++) {
+        pages.push(i);
+      }
+    }
+
+    return pages;
+  };
+
   return (
     <section className='main-content'>
       <h1>Search for excercises</h1>
@@ -78,12 +150,51 @@ const Content = () => {
         </select>
       </div>
       <div className='exercises'>
-        <ExcerciseCard />
-        {/* <ExcerciseCard />
-        <ExcerciseCard />
-        <ExcerciseCard />
-        <ExcerciseCard />
-        <ExcerciseCard /> */}
+        {exercises.map((exercise, index) => (
+          <ExcerciseCard key={index} exercise={exercise} />
+        ))}
+      </div>
+      <div className='pagination'>
+        <button
+          className='page-number'
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+        >
+          &lt;
+        </button>
+        <button
+          className='page-number'
+          onClick={() => handlePageClick(1)}
+          disabled={currentPage === 1}
+        >
+          1
+        </button>
+        {currentPage > 3 && <span className='skipped-page-dots'>...</span>}
+        {getPaginationNumbers().map((pageNumber) => (
+          <button
+            className='page-number'
+            key={pageNumber}
+            onClick={() => handlePageClick(pageNumber)}
+            disabled={currentPage === pageNumber}
+          >
+            {pageNumber}
+          </button>
+        ))}
+        {currentPage < totalPages - 2 && <span className='skipped-page-dots'>...</span>}
+        <button
+          className='page-number'
+          onClick={() => handlePageClick(totalPages)}
+          disabled={currentPage === totalPages}
+        >
+          {totalPages}
+        </button>
+        <button
+          className='page-number'
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+        >
+          &gt;
+        </button>
       </div>
     </section>
   )

@@ -84,3 +84,19 @@ select{
         grid-template-columns: 1fr;
     }
 }
+
+.pagination{
+    margin-top:20px
+}
+
+.page-number{
+    font-size: 20px;
+    margin: 3px;
+    padding: 4px 8px;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+.skipped-page-dots{
+    font-size: 20px;
+}
