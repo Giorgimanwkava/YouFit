@@ -1,4 +1,4 @@
-import React,{ useEffect, useState } from 'react'
+import React,{ useEffect, useState, useRef } from 'react'
 import './Content.css'
 import ExcerciseCard from './ExcerciseCard'
 import Data from "../assets/data.json"
@@ -38,7 +38,7 @@ const Content = () => {
   
   const [exercises, setExercises] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const exercisesPerPage = 5;
+  const exercisesPerPage = 6;
   const totalPages = Math.ceil(Data.length / exercisesPerPage);
   const exercisesContainerRef = useRef(null);
 
@@ -49,9 +49,11 @@ const Content = () => {
   }, [currentPage]);
 
   const handlePageClick = (pageNumber) => {
-    setCurrentPage(pageNumber);
-    exercisesContainerRef.current.scrollIntoView({ behavior: 'smooth' });
-  };
+    if (pageNumber !== currentPage) {
+      setCurrentPage(pageNumber);
+      exercisesContainerRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
   const getPaginationNumbers = () => {
     const pages = [];
@@ -73,8 +75,8 @@ const Content = () => {
     }
 
     return pages;
-  };
-
+  }
+  
   return (
     <section className='main-content'>
       <h1>Search for excercises</h1>
@@ -149,7 +151,7 @@ const Content = () => {
           <option value="upper%20back">upper back</option>
         </select>
       </div>
-      <div className='exercises'>
+      <div id="exercises-container" ref={exercisesContainerRef} className='exercises'>
         {exercises.map((exercise, index) => (
           <ExcerciseCard key={index} exercise={exercise} />
         ))}
@@ -157,7 +159,7 @@ const Content = () => {
       <div className='pagination'>
         <button
           className='page-number'
-          onClick={handlePrevPage}
+          onClick={() => handlePageClick(currentPage - 1)}
           disabled={currentPage === 1}
         >
           &lt;
@@ -165,7 +167,6 @@ const Content = () => {
         <button
           className='page-number'
           onClick={() => handlePageClick(1)}
-          disabled={currentPage === 1}
         >
           1
         </button>
@@ -175,7 +176,6 @@ const Content = () => {
             className='page-number'
             key={pageNumber}
             onClick={() => handlePageClick(pageNumber)}
-            disabled={currentPage === pageNumber}
           >
             {pageNumber}
           </button>
@@ -184,13 +184,12 @@ const Content = () => {
         <button
           className='page-number'
           onClick={() => handlePageClick(totalPages)}
-          disabled={currentPage === totalPages}
         >
           {totalPages}
         </button>
         <button
           className='page-number'
-          onClick={handleNextPage}
+          onClick={() => handlePageClick(currentPage + 1)}
           disabled={currentPage === totalPages}
         >
           &gt;

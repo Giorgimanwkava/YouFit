@@ -8,3 +8,7 @@
 :root{
   --header-fs:clamp(45px, 6vw + 1.5rem, 200px);
 }
+
+html{
+  scroll-behavior: smooth;
+}
