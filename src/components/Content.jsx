@@ -1,9 +1,9 @@
-import React,{ useEffect, useState, useRef } from 'react'
+import React,{ useEffect, useState, useRef, forwardRef } from 'react'
 import './Content.css'
 import ExcerciseCard from './ExcerciseCard'
 import Data from "../assets/data.json"
 
-const Content = () => {
+const Content = forwardRef((props, ref) => {
 
   // this is function for fetching data from rapidAPI.
     // it is commented out because rapidAPI only allows for 550 calls/month
@@ -111,7 +111,7 @@ const Content = () => {
   }
   
   return (
-    <section className='main-content'>
+    <section ref={ref} className='main-content'>
       <h1>Search for excercises</h1>
       <div className='searchbar-and-btn'>
         <input className='search-bar' type="text" placeholder="Search..." />
@@ -290,6 +290,6 @@ const Content = () => {
       </div>
     </section>
   )
-}
+})
 
 export default Content
