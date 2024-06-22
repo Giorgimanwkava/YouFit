@@ -44,6 +44,7 @@ const Content = forwardRef((props, ref) => {
   const [equipmentFilter, setEquipmentFilter] = useState('');
   const [targetFilter, setTargetFilter] = useState('');
   const [filteredExercises, setFilteredExercises] = useState(exercises);
+  const [searchQuery, setSearchQuery] = useState('');
   
   const exercisesContainerRef = useRef(null);
 
@@ -53,26 +54,28 @@ const Content = forwardRef((props, ref) => {
   const handleBodyPartChange = (e) => {
     setBodyPartFilter(e.target.value);
   };
-  
   const handleEquipmentChange = (e) => {
     setEquipmentFilter(e.target.value);
   };
-  
   const handleTargetChange = (e) => {
     setTargetFilter(e.target.value);
   };
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
   // filtering exercises based on multi-select
-  useEffect(() => {
+  const filterData=()=>{
     const filteredData = exercises.filter(exercise => {
       return (
         (bodyPartFilter === '' || exercise.bodyPart === bodyPartFilter) &&
         (equipmentFilter === '' || exercise.equipment === equipmentFilter) &&
-        (targetFilter === '' || exercise.target === targetFilter)
+        (targetFilter === '' || exercise.target === targetFilter)&&
+        (searchQuery === '' || exercise.name.toLowerCase().includes(searchQuery.toLowerCase()))
       );
     });
     setFilteredExercises(filteredData);
-  }, [bodyPartFilter, equipmentFilter, targetFilter]);
+  }
 
   // displaying paginated exercises
   useEffect(() => {
@@ -114,8 +117,8 @@ const Content = forwardRef((props, ref) => {
     <section ref={ref} className='main-content'>
       <h1>Search for excercises</h1>
       <div className='searchbar-and-btn'>
-        <input className='search-bar' type="text" placeholder="Search..." />
-        <button className="fa-solid fa-magnifying-glass search-btn"></button>
+        <input className='search-bar' type="text" placeholder="Search..." value={searchQuery} onChange={handleSearchChange} />
+        <button className="fa-solid fa-magnifying-glass search-btn" onClick={filterData}></button>
       </div>
       <div className='multi-select'>
         <select name='bodypart' id='bodypart-select' value={bodyPartFilter} onChange={handleBodyPartChange}>
